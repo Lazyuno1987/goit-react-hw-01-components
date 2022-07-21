@@ -8,13 +8,13 @@ export const Statistics = ({ title, stats }) => {
       {title && <h2 className={css.title}>{title}</h2>}
 
       <ul className={css.list}>
-        {stats.map(el => {
+        {stats.map(({id, label, percentage}) => {
           return (
               <li className={css.item}
-                  key={el.id}
+                  key={id}
                   style={{ backgroundColor: randomColor() }} >
-              <span className={css.label}>{el.label}</span>
-              <span className={css.percentage}>{el.percentage}%</span>
+              <span className={css.label}>{label}</span>
+              <span className={css.percentage}>{percentage}%</span>
             </li>
           );
         })}
@@ -24,7 +24,7 @@ export const Statistics = ({ title, stats }) => {
 };
 
 Statistics.prototype = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   stats: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
